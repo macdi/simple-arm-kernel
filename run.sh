@@ -1,0 +1,1 @@
+qemu-system-arm -M realview-pbx-a9 -cpu cortex-a9 -m 1024M -kernel kernel.elf -serial stdio
