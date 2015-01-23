@@ -14,7 +14,20 @@ void print_uart0(const char *s) {
 
 void _init()
 {
-  print_uart0("bare metal: Hello world!\n");
+  //print_uart0("bare metal: Hello world!\n");
+
+  int id;
+  int count;
+
+  asm volatile("mov r1, #7       \n"                                                                                                                                                                    
+               "dsb              \n"                                                                                                                                                        
+               "dmb              \n"                                                                                                                                                        
+	       "smc #0           \n"                                                                                                                                                        
+	       "mov %[value], r0 \n"                                                                                                                                                        
+	       : [value] "=r" (id) :: "r0", "r1");    
   
-  while(1);
+  while(1) {
+    count = count + 1;
+  }
+
 }
